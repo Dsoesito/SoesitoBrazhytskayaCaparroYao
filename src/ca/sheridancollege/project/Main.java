@@ -41,8 +41,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Create an instance of the Main class and start the game
-        Main game = new Main();
-        game.startGame();
+//        Main game = new Main();
+//        game.startGame();
     }
 }
