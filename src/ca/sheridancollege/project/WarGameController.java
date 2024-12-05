@@ -69,10 +69,10 @@ public class WarGameController extends Game {
             }
         } else if (card1.getValue() > card2.getValue()) {
             p1.addToHand(table);
-            gameView.displayRoundResult(p1.getName(), card1, roundNumber);
+            gameView.displayRoundResult(p1.getName(), roundNumber);
         } else {
             p2.addToHand(table);
-            gameView.displayRoundResult(p2.getName(), card2, roundNumber);
+            gameView.displayRoundResult(p2.getName(), roundNumber);
         }
     }
 
