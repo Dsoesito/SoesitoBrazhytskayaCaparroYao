@@ -47,10 +47,10 @@ public class WarGameController extends Game {
         Player p2 = super.getPlayers().get(1);
 
         userView.putCardDown(p1.getName());
-        Card card1 = p1.playCard();
+        WarCard card1 = p1.playCard();
 
         userView.putCardDown(p2.getName());
-        Card card2 = p2.playCard();
+        WarCard card2 = p2.playCard();
 
         gameView.displayMessage(p1.getName() + " plays: " + card1);
         gameView.displayMessage(p2.getName() + " plays: " + card2);
@@ -59,7 +59,7 @@ public class WarGameController extends Game {
         table.add(card1);
         table.add(card2);
 
-        if (card1.getValue() == card2.getValue()) {
+        if (card1.getNumericalValue() == card2.getNumericalValue()) {
             gameView.displayWarStart();
             boolean p1WinsWar = declareWar(table);
             if (p1WinsWar) {
@@ -67,7 +67,7 @@ public class WarGameController extends Game {
             } else {
                 p2.addToHand(table);
             }
-        } else if (card1.getValue() > card2.getValue()) {
+        } else if (card1.getNumericalValue() > card2.getNumericalValue()) {
             p1.addToHand(table);
             gameView.displayRoundResult(p1.getName(), roundNumber);
         } else {
@@ -85,10 +85,10 @@ public class WarGameController extends Game {
             return p1.getHand().size() > p2.getHand().size();
         }
 
-        Card p1FaceDown = p1.playCard();
-        Card p1FaceUp = p1.playCard();
-        Card p2FaceDown = p2.playCard();
-        Card p2FaceUp = p2.playCard();
+        WarCard p1FaceDown = p1.playCard();
+        WarCard p1FaceUp = p1.playCard();
+        WarCard p2FaceDown = p2.playCard();
+        WarCard p2FaceUp = p2.playCard();
 
         table.add(p1FaceDown);
         table.add(p1FaceUp);
@@ -99,10 +99,10 @@ public class WarGameController extends Game {
         gameView.displayMessage(p1.getName() + " plays face-up card: " + p1FaceUp);
         gameView.displayMessage(p2.getName() + " plays face-up card: " + p2FaceUp);
 
-        if (p1FaceUp.getValue() == p2FaceUp.getValue()) {
+        if (p1FaceUp.getNumericalValue() == p2FaceUp.getNumericalValue()) {
             return declareWar(table);
         } else {
-            return p1FaceUp.getValue() > p2FaceUp.getValue();
+            return p1FaceUp.getNumericalValue() > p2FaceUp.getNumericalValue();
         }
     }
 }
