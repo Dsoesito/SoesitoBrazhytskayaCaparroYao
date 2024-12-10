@@ -30,8 +30,19 @@ public class GroupOfCards {
      *
      * @return the group of cards.
      */
-    public ArrayList<Card> getCards() {
-        return cards;
+    public ArrayList<WarCard> getCards() {
+        ArrayList<WarCard> warCards = new ArrayList<>();
+        
+        for (Card card : cards) {
+            if (card instanceof WarCard) {
+                warCards.add((WarCard) card);
+            }
+        }
+        return warCards;
+    }
+    
+    public void setCards(ArrayList<WarCard> deck) {
+        this.cards = new ArrayList<>(deck);
     }
 
     public void shuffle() {

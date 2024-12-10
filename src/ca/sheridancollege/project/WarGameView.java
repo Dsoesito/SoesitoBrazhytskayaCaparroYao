@@ -46,7 +46,7 @@ public class WarGameView {
     }
 
     // Displaying table
-    public void displayTable(ArrayList<Card> table) {
+    public void displayTable(ArrayList<WarCard> table) {
         System.out.println("Cards on the table: " + table);
     }
 }
