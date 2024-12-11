@@ -23,21 +23,27 @@ public class WarGameController extends Game {
 
     @Override
     public void play() {
+        // retreieve players
         WarPlayer p1 = (WarPlayer) super.getPlayers().get(0);
         WarPlayer p2 = (WarPlayer) super.getPlayers().get(1);
         
         int roundNumber = 1;
+        
+        // keep game going while players have cards in their hands
         while (!p1.getHand().isEmpty() && !p2.getHand().isEmpty()) {
             gameView.displayMessage("Round " + roundNumber + " begins!");
             executeRound(roundNumber);
             gameView.waitForNextRound();
             roundNumber++;
         }
+        
+        // declare winner
         declareWinner();
     }
 
     @Override
     public void declareWinner() {
+        // retreieve players
         WarPlayer p1 = (WarPlayer) super.getPlayers().get(0);
         WarPlayer p2 = (WarPlayer) super.getPlayers().get(1);
 
@@ -46,22 +52,27 @@ public class WarGameController extends Game {
     }
 
     public void executeRound(int roundNumber) {
+        // retreieve players
         WarPlayer p1 = (WarPlayer) super.getPlayers().get(0);
         WarPlayer p2 = (WarPlayer) super.getPlayers().get(1);
 
+        // p1 plays card
         userView.putCardDown(p1.getName());
         WarCard card1 = p1.playCard();
 
+        // p2 plays card
         userView.putCardDown(p2.getName());
         WarCard card2 = p2.playCard();
 
         gameView.displayMessage(p1.getName() + " plays: " + card1);
         gameView.displayMessage(p2.getName() + " plays: " + card2);
 
+        // create table with cards in play
         ArrayList<WarCard> table = new ArrayList<>();
         table.add(card1);
         table.add(card2);
 
+        // compare card values
         if (card1.getNumericalValue() == card2.getNumericalValue()) {
             gameView.displayWarStart();
             boolean p1WinsWar = declareWar(table);
@@ -79,15 +90,19 @@ public class WarGameController extends Game {
         }
     }
 
+    // "war" scenario
     public boolean declareWar(ArrayList<WarCard> table) {
+        // retreieve players
         WarPlayer p1 = (WarPlayer) super.getPlayers().get(0);
         WarPlayer p2 = (WarPlayer) super.getPlayers().get(1);
 
+        // if a player does not have enough cards to conduct a war
         if (p1.getHand().size() < 2 || p2.getHand().size() < 2) {
             gameView.displayMessage("One player doesn't have enough cards for war!");
             return p1.getHand().size() > p2.getHand().size();
         }
 
+        // players play cards on war table
         WarCard p1FaceDown = p1.playCard();
         WarCard p1FaceUp = p1.playCard();
         WarCard p2FaceDown = p2.playCard();
@@ -102,6 +117,7 @@ public class WarGameController extends Game {
         gameView.displayMessage(p1.getName() + " plays face-up card: " + p1FaceUp);
         gameView.displayMessage(p2.getName() + " plays face-up card: " + p2FaceUp);
 
+        // compare war card values
         if (p1FaceUp.getNumericalValue() == p2FaceUp.getNumericalValue()) {
             return declareWar(table);
         } else {

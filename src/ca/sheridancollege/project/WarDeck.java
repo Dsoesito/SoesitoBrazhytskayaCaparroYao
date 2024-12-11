@@ -16,14 +16,15 @@ public final class WarDeck extends GroupOfCards {
         super.setCards(createDeck());
     }
     
+    // function to create the deck
     public ArrayList<WarCard> createDeck() {
         ArrayList<WarCard> deck = new ArrayList<>();
         
-        // Iterate over all suits
+        // iterate over all suits
         for (WarCard.Suit suit : WarCard.Suit.values()) {
-            // Iterate over all values
+            // iterate over all values
             for (WarCard.Value value : WarCard.Value.values()) {
-                // Add a new WarCard to the deck
+                // add a new WarCard to the deck
                 deck.add(new WarCard(value, suit));
             }
         }
@@ -31,6 +32,7 @@ public final class WarDeck extends GroupOfCards {
     return deck;
     }
     
+    // toString method to check deck with SysOut
     @Override
     public String toString() {
         StringBuilder deckString = new StringBuilder("Deck contains:\n");

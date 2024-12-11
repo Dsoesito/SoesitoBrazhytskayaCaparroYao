@@ -37,9 +37,10 @@ public class WarCard extends Card {
     
     private static final Map<Value, Integer> valueRankings;
     
+    // assigning valeus to each card with a hashmap
     static {
         valueRankings = new HashMap<>();
-        valueRankings.put(Value.ACE, 14); // Assign ACE the highest rank
+        valueRankings.put(Value.ACE, 14);
         valueRankings.put(Value.TWO, 2);
         valueRankings.put(Value.THREE, 3);
         valueRankings.put(Value.FOUR, 4);
@@ -75,6 +76,7 @@ public class WarCard extends Card {
         return this.suit;
     }
     
+    // retreiving the value of each card to compare
     public int getNumericalValue() {
         return valueRankings.get(value);
     }
